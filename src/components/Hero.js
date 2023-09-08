@@ -1,11 +1,11 @@
 import React from "react"
 import Card from "./Card"
 import data from "../data"
-// import { ThemeContext } from "../App"
+import { ThemeContext } from "../App"
 
 export default function Hero({setSearch}) {
     
-    // const { theme } = React.useContext(ThemeContext)
+    const [ theme , toggleTheme] = React.useContext(ThemeContext)
 
     const [filteredList, setFilteredList] = React.useState(data)
     const [searchQuery, setSearchQuery] = React.useState("")
@@ -48,7 +48,7 @@ export default function Hero({setSearch}) {
                 <input onChange = {handleSearch} value={searchQuery} className="nosubmit" type="search" placeholder="Search..."/>
                 
                 <div className="dropdown">
-                    <select id="regions" className="reg" name="regions" text="Filter by a region" onChange={onFilterChange}>
+                    <select className= {`reg ${theme}-theme`} name="regions" text="Filter by a region" onChange={onFilterChange}>
                         <option value="all">All Regions</option>
                         <option value="asia">Asia</option>
                         <option value="europe">Europ</option>

@@ -1,9 +1,11 @@
 import React from "react"
+import {useContext} from "react"
+import { ThemeContext } from "../App.js"
 
 export default function Card(props) {
-   console.log(props)
+    const [ theme, toggleTheme ] = useContext(ThemeContext)
     return (
-        <div className="card" id="card">
+        <div className={`card ${theme}-theme`} id="card">
             <img src={`${props.item.photo}`} className="card--image" />
             <div className="card--stats">
                 <h3 className="card--title" id="title">{props.item.title}</h3>

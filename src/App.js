@@ -4,26 +4,25 @@ import Navbar from "./components/Navbar.js"
 import Hero from "./components/Hero.js"
 import Card from "./components/Card.js"
 import data from "./data"
+import { createContext, useContext, useState } from 'react'
 
-
-// const ThemeContext = React.createContext()
+const ThemeContext = createContext(null)
 
 export default function App() {
-    // const [theme, setTheme] = React.useState("light")
+    const [theme, setTheme] = useState("light")
 
-    // function toggleTheme() {
-    //     setTheme(prevTheme => prevTheme === "light" ? "dark" : "light")
-    // }
-    // const cards = data.map(item => <Card key={item.id} item={item} />)        
+    function toggleTheme() {
+        setTheme(prevTheme => prevTheme === "light" ? "dark" : "light")
+    }
+    console.log(theme)
     return (
-        // <ThemeContext.Provider value={{theme, toggleTheme}}>
-            <div >
+        <ThemeContext.Provider value={[theme, toggleTheme]}>
+            <main className={`${theme}-theme`} >
                 <Navbar />
                 <Hero />
-                {/* <section className="cards-list">
-                    {cards}
-                </section> */}
-            </div>
-        // </ThemeContext.Provider>
+            </main>
+        </ThemeContext.Provider>
     )
 }
+
+export { ThemeContext }
